@@ -1,14 +1,12 @@
-import { configureStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import authReducer from './auth';
+import labelSizeReducer from './labelSize';
 
-const loginReducer = (state = { loged: false }, action) => {
-    if (action.type === 'logout') {
-        return { loged: false };
+const store = configureStore({
+    reducer: {
+        auth: authReducer,
+        labelSize: labelSizeReducer
     }
-    if (action.type === 'login') {
-        return { loged: true };
-    }
-    return state;
-}
-const store = configureStore(loginReducer);
+});
 
 export default store;
