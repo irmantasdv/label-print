@@ -1,52 +1,25 @@
-import { Fragment, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Label from "./components/Label/Label/Label";
-import LabelOptions from "./components/Label/LabelOptions/LabelOptions";
-import Header from "./components/Layout/Header";
-import { labelSizeActions } from './store/labelSize';
-import classes from './App.module.css';
+import React from 'react'
+import { Route, Routes, Navigate, Link } from 'react-router-dom';
+import Header from './components/Layout/Header';
+import ContactForm from './pages/ContactForm';
+import HomePage from './pages/HomePage';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
+
 const App = () => {
-  const labelSize = useSelector(state => state.labelSize.labelSize);
-  const dispatch = useDispatch();
-  const heightRef = useRef();
-  const widthRef = useRef();
-
-  const labelSizeChangeHandler = (e) => {
-    e.preventDefault();
-    const height = heightRef.current.value;
-    const width = widthRef.current.value;
-    if (height) {
-      dispatch(labelSizeActions.changeHeight(height));
-      heightRef.current.value = '';
-    }
-    if (width) {
-      dispatch(labelSizeActions.changeWidth(width));
-      widthRef.current.value = '';
-    }
-  }
   return (
-    <Fragment>
-      <Header />
-      <main className={classes.main}>
-        <LabelOptions />
-        <Label />
-      </main>
-      <div className={classes.labelSizeHandler}>
-        <h2>Change label size</h2>
-        <form className={classes.form}>
-          <label htmlFor="height">Heigth</label>
-          <input placeholder="" type='number' min='1' max='1000' ref={heightRef} />
-          <label htmlFor="width">Width</label>
-          <input type='number' min='1' max='1000' ref={widthRef} />
-          <button onClick={labelSizeChangeHandler}>Submit</button>
-        </form>
-        <div>        
-          <p>Label height: {labelSize.height}</p>
-          <p>Label width: {labelSize.width}</p></div>
-      </div>
+    <React.Fragment>
+      <Header/>
+      <Routes>
+        <Route path='/' element={<Navigate replace to='/home' />} />
+        <Route path='/home' element={<HomePage />} />
+        <Route path='/contact' element={<ContactForm />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </React.Fragment>
 
-    </Fragment>
-  );
+  )
 }
 
-export default App;
+export default App
