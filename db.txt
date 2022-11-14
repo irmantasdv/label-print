@@ -1,0 +1,4 @@
+﻿Label table
+
+
+CREATE TABLE `label` (  `id` bigint(11) NOT NULL AUTO_INCREMENT,  `title` varchar(120) DEFAULT NULL,  `barcode` bigint(12) DEFAULT NULL,  `image_url` varchar(220) DEFAULT NULL,  `client_id` bigint(11) NOT NULL,  PRIMARY KEY (`id`),  KEY `client_id` (`client_id`) ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4
