@@ -1,28 +1,34 @@
-.form{
+.card {
+    height: 50%;
+    max-width: 30%;
+    margin: 3rem auto;
+}
+
+.form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     padding: 3rem;
-    align-items: center;
+    /* align-items: center; */
 }
-.form input[type=email], input[type=password] {
+
+.form input[type=email],
+input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-  }
-  .form button {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-.card{
-    height: 90vh;
-    
+}
+
+.formActions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.error {
+    color: red;
 }

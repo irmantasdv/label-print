@@ -1,12 +1,12 @@
 import React from 'react';
 import Card from '../../UI/Card/Card';
 import classes from './Label.module.css';
-import { useSelector } from "react-redux";
 
-const Label = () => {
-    const labelSize = useSelector(state => state.labelSize.labelSize);
-    const{height,width} = labelSize;
-    console.log(height);
+const Label = (props) => {
+
+    const height = props.heightLabel;
+    const width = props.widthLabel;
+  
   return (
     <Card>
         <div>

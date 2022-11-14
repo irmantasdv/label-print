@@ -1,6 +1,6 @@
 import { createSlice} from '@reduxjs/toolkit';
 
-const initialLabelSizeState = { labelSize: { height: 400, width: 300 } };
+const initialLabelSizeState = { labelSize: { height: 300, width: 400} };
 
 const labelSizeSlice = createSlice({
     name: 'labelSize',

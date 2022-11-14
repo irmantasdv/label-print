@@ -1,4 +1,4 @@
-import { Fragment, useRef } from "react";
+import { Fragment,useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Label from "../components/Label/Label/Label";
 import LabelOptions from "../components/Label/LabelOptions/LabelOptions";
@@ -11,6 +11,7 @@ const HomePage = () => {
   const heightRef = useRef();
   const widthRef = useRef();
 
+  const{height,width} = labelSize;
   const labelSizeChangeHandler = (e) => {
     e.preventDefault();
     const height = heightRef.current.value;
@@ -24,11 +25,12 @@ const HomePage = () => {
       widthRef.current.value = '';
     }
   }
+  console.log("Renderin");
   return (
     <Fragment>
       <main className={classes.main}>
         <LabelOptions />
-        <Label />
+        <Label widthLabel={height} heightLabel={width}/>
       </main>
       <div className={classes.labelSizeHandler}>
         <h2>Change label size</h2>

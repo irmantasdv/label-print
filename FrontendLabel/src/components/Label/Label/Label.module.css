@@ -1,3 +1,8 @@
+.productCard{
+    padding: 2%;
+    flex-basis: 16%;
+    margin: 2rem 0.2rem;
+}
 .labelContent{
     border: thick solid black;
     margin:0 auto;

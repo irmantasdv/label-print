@@ -29,7 +29,6 @@
   .button23 {
     background-color: #FFFFFF;
     border: 1px solid #222222;
-    border-radius: 8px;
     box-sizing: border-box;
     color: #222222;
     cursor: pointer;
@@ -74,4 +73,7 @@
   }
   .button23>a{
     color: #222222;
+  }
+  .button24{
+    background-color: #F7F7F7;
   }
