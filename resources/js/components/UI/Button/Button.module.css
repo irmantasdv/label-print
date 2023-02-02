@@ -1,0 +1,61 @@
+.button {
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  /*border: 1px solid var(--green-dark);*/
+    border: 1px solid #027f51;
+  color: white;
+  /*background: var(--green-dark);*/
+    background: #027f51;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+  border-radius: 5px;
+}
+.buttonRedShade {
+  /*background: var(--redviolett-dark);*/
+  /*border-color: var(--redviolett-dark);*/
+    background: #541423;
+    border-color: #541423;
+}
+
+.button:hover,
+.button:active {
+  /*background: var(--green-middle);*/
+  /*border-color: var(--green-middle);*/
+    background: #04AA6D;
+    border-color: #04AA6D;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  /*background: var(--green-middle);*/
+  /*border-color: var(--green-middle);*/
+    background:  #04AA6D;
+    border-color:  #04AA6D;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+}
+
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+button[disabled]:hover,
+button[disabled]:active{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+  }
+
+
+@media (min-width: 768px) {
+  .button {
+    width: auto;
+  }
+}

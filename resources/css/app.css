@@ -1,0 +1,21 @@
+:root {
+    /*green*/
+    --green-dark: #027f51;
+    --green-middle: #04AA6D;
+    --green-ligth: #05d98c;
+
+    /*redviolet*/
+    --redviolett-dark: #541423;
+    --redviolett-middle: #97233F;
+    --redviolett-ligth: #dd355c;
+
+    /*blue*/
+    --blue-dark: #121a24;
+    --blue-middle: #25374c;
+    --blue-ligth: #4a6c93;
+
+    /*gold*/
+    --gold-dark: #DFBE05;
+    --gold-middle: #FFD700;
+    --gold-ligth: #F9DE40;
+}

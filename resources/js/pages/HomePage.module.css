@@ -1,0 +1,28 @@
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem;
+    gap: 1rem;
+
+}
+
+
+.labelSizeHandler {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form {
+    margin-top: 12rem;
+    display: flex;
+    gap: 0.4rem;
+}
+/*testing print*/
+@media print {
+    main{
+        background-color: blue;
+    }
+}

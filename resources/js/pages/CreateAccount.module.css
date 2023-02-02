@@ -1,0 +1,14 @@
+.sucsess{
+    padding: 20px;
+    background-color: #04AA6D;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .alert{
+    padding: 20px;
+    background-color: #cd1616;
+    color: white;
+    margin-bottom: 15px;
+    text-align: center;
+  }
