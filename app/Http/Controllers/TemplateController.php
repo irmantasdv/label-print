@@ -38,7 +38,16 @@ class TemplateController extends Controller
      */
     public function store(StoreTemplateRequest $request)
     {
-        //
+//        $request->validate([
+//            'title' => 'required',
+//            'body' => 'required',
+//        ]);
+
+        $template = Template::create($request->all());
+        return [
+            "status" => 1,
+            "data" => $template
+        ];
     }
 
     /**

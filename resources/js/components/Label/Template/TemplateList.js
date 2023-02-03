@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { templateActions } from '../../../store/template';
 import TemplateItem from './TemplateItem';
 import classes from './TemplateList.module.css'
@@ -46,21 +47,21 @@ const TemplateList = () => {
                             <div>
                                 <h2>{template.title}</h2>
                                 {message && <p>{message}</p>}
-                                <button className="btn btn-secondary">Edit</button>
+                                <Link to={`/templates/${template.id}`}><button className="btn btn-secondary">Edit</button></Link>
                                 <button className="btn btn-danger m-2" onClick={() => deleteTemplateHandler(template.id)}>Delete</button>
 
                                 <TemplateItem
                                     width={template.width}
                                     height={template.height}
-                                    labelSku={template.sku}
+                                    sku={template.sku}
                                     imageUrl={template.imageUrl}
                                     labelDescription={template.description}
                                     barcode={template.barcode}
                                     backGroudColor={template.backGroundColor}
                                     imageBorder={template.imageBorder}
-                                    sizeText={template.sizeText}
-                                    fontWeightText={template.fontWeightText}
-                                    textColor={template.textColor}
+                                    sizeDescription={template.sizeDescription}
+                                    fontWeightDescription={template.fontWeightDescription}
+                                    descriptionTextColor={template.descriptionTextColor}
                                     descriptionBorder={template.descriptionBorder}
                                 />
                             </div>

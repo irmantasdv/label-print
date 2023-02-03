@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/labels', LabelController::class,);
-Route::resource('/templates',TemplateController::class);
+Route::resource('/templates',TemplateController::class)->middleware('cors');
 //Route::get('/templates', function () {
 //    return new LabelTemplateCollection(LabelTemplate::all());
 //});

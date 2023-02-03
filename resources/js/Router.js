@@ -13,6 +13,9 @@ import TestSheet from './pages/TestSheet';
 import Header from "./components/Layout/Header";
 import UploadCsv from "./pages/UploadCsv";
 import TemplateList from "./components/Label/Template/TemplateList";
+import TemplateDetails from "./components/Label/Template/TemplateDetails";
+import JapanFirst from "./components/japan/JapanFirst";
+
 
 
 
@@ -22,6 +25,7 @@ const AppRouter = () => (
         <Routes>
             <Route path='/' element={<Navigate replace to='/home' />} />
             <Route path="/templates" element={<TemplateList/>} exact />
+            <Route path='/templates/:templateId' element={<TemplateDetails/>} />
             <Route path="/home" element={<HomePage/>} exact />
             <Route path='/sheet' element={<TestSheet />} />
             <Route path='/labels' element={<Labels />} />
@@ -31,6 +35,7 @@ const AppRouter = () => (
             <Route path='/contact' element={<ContactForm />} />
             <Route path='/login' element={<Login />} />
             <Route path='/upload' element={<UploadCsv />} />
+            <Route path='/japan' element={<JapanFirst/>} />
             <Route path='/adjkd67asd' element={<AdminLogin />} />
             <Route path='*' element={<NotFound />} />
         </Routes>

@@ -5,7 +5,7 @@ import useDispatchLabelActionByEventName from "../../../hooks/use-DispatchLabelA
 import Card from "../../UI/Card/Card";
 import LabelOptionModal from "../../UI/LabelOptionModal/LabelOptionModal";
 import Button from "../../UI/Button/Button";
-import NewTemplate from "../../Template/NewTemplate";
+import NewTemplate from "../Template/NewTemplate";
 
 const LabelOptions = () => {
     const [toggleLabelSize, setToggleLabelSize] = useState(false)
@@ -37,7 +37,7 @@ const LabelOptions = () => {
     } = useDispatchLabelActionByEventName();
     const dispatch = useDispatch();
     const labelComponent = useSelector(state => state.labelComponent.labelComponent);
-    const { height, width, imageBorder, sizeText, sizeSku } = labelComponent;
+    const { height, width, imageBorder, sizeDescription, sizeSku } = labelComponent;
     const {
         handleColorChanges,
         handlePixelChanges,
@@ -140,7 +140,7 @@ const LabelOptions = () => {
                     {toggleLabelDescription && <LabelOptionModal onClick={toggleDescriptionHandler} title={'Description Options'}>
                         <><div className="col-sm-4">
                             <label htmlFor="sizeSku">Text size</label>
-                            <input type="number" min={6} max={60} value={sizeText} name="changeTextSize" className="form-control" id="sizeSku" onChange={handlePixelChanges} />
+                            <input type="number" min={6} max={60} value={sizeDescription} name="changeTextSize" className="form-control" id="sizeSku" onChange={handlePixelChanges} />
                         </div>
 
                             <div className="col-sm-4">

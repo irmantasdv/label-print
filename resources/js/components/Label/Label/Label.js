@@ -10,9 +10,9 @@ const Label = (props) => {
         height,
         width,
         backGroundColor,
-        labelText,
-        sizeText,
-        labelSku,
+        description,
+        sizeDescription,
+        sku,
         imageUrl,
         imageBorder,
         barcode,
@@ -20,8 +20,8 @@ const Label = (props) => {
         colorSku,
         sizeSku,
         fontWeightSku,
-        fontWeightText,
-        textColor,
+        fontWeightDescription,
+        descriptionTextColor,
         descriptionBorder,
         skuBorder
     } = labelComponent;
@@ -46,8 +46,8 @@ const Label = (props) => {
                     <img src={imageUrl} className="card-img-top p-3" style={{ height: "100%", width: "100%", objectFit: "contain", borderStyle: imageBorder, margin: 0 }} alt="" />
                 </div>}
                 <div className="card-body">
-                    <p className={`"card-text" ${classes.cardText}`} style={{ color: colorSku, fontSize: sizeSku, fontWeight: fontWeightSku, borderStyle: skuBorder, margin: 0.2 }}>{labelSku}</p>
-                    <p className={`"card-text" ${classes.cardText}`} style={{ fontSize: sizeText, fontWeight: fontWeightText, color: textColor, borderStyle: descriptionBorder, margin: 0.2 }}>{labelText}</p>
+                    <p className={`"card-text" ${classes.cardText}`} style={{ color: colorSku, fontSize: sizeSku, fontWeight: fontWeightSku, borderStyle: skuBorder, margin: 0.2 }}>{sku}</p>
+                    <p className={`"card-text" ${classes.cardText}`} style={{ fontSize: sizeDescription, fontWeight: fontWeightDescription, color: descriptionTextColor, borderStyle: descriptionBorder, margin: 0.2 }}>{description}</p>
                     <Barcode value={barcode} width={barcodeWidth} textMargin={1} fontSize={barcodeFontSize} height={barcodeHeight} />
                 </div>
             </div>

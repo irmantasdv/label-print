@@ -2,7 +2,6 @@ import React from 'react'
 import Barcode from "react-barcode";
 
 function IsPortraitOrLandscape(width, height) {
-    // console.log("hi" + width + " width; " + height + " height")
     if (width > height) {
         const difference = parseInt(width - height);
         const newHeightPerCents = parseInt(difference / height * 100);
@@ -46,8 +45,8 @@ const TemplateItem = (props) => {
             </div>}
             <div className="card-body">
                 <h5 className="card-title">{props.title}</h5>
-                <p className="card-text" style={{ color: props.colorSku, fontSize: props.sizeSku, fontWeight: props.fontWeightSku, borderStyle: props.skuBorder, margin: 0.2 }}>{props.labelSku}</p>
-                <p className="card-text" style={{ fontSize: props.sizeText, fontWeight: props.fontWeightText, color: props.textColor, borderStyle: props.descriptionBorder, margin: 0.2 }}>{props.labelDescription}</p>
+                <p className="card-text" style={{ color: props.colorSku, fontSize: props.sizeSku, fontWeight: props.fontWeightSku, borderStyle: props.skuBorder, margin: 0.2 }}>{props.sku}</p>
+                <p className="card-text" style={{ fontSize: props.sizeDescription, fontWeight: props.fontWeightDescription, color: props.descriptionTextColor, borderStyle: props.descriptionBorder, margin: 0.2 }}>{props.labelDescription}</p>
                 <Barcode value={props.barcode} width={barcodeWidth} textMargin={1} fontSize={barcodeFontSize} height={barcodeHeight} />
             </div>
         </div>
