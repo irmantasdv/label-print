@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Http\Requests\UpdateTemplateRequest;
 use App\Http\Resources\TemplateResource;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Template;
 
 class TemplateController extends Controller
@@ -17,7 +18,7 @@ class TemplateController extends Controller
     public function index()
     {
         //return LabelResource::collection(Label::query()->orderBy('id','desc')->paginate(10));
-        return TemplateResource::collection(Template::query()->orderBy('id','asc')->paginate(12));
+        return TemplateResource::collection(Template::query()->orderBy('id','asc')->paginate(22));
     }
 
     /**
@@ -38,10 +39,7 @@ class TemplateController extends Controller
      */
     public function store(StoreTemplateRequest $request)
     {
-//        $request->validate([
-//            'title' => 'required',
-//            'body' => 'required',
-//        ]);
+
 
         $template = Template::create($request->all());
         return [
@@ -84,8 +82,70 @@ class TemplateController extends Controller
      */
     public function update(UpdateTemplateRequest $request, Template $template)
     {
-        //
-    }
+
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|min:2',
+            'height' => 'required|numeric',
+            'width' => 'required|numeric',
+            'imageUrl' => 'URL',
+            'backGroundColor' => 'max:12',
+            'description' => 'min:2|max:120',
+            'sizeDescription' => 'numeric|max:12',
+            'sku' => 'max:12',
+            'barcode' => 'max:15',
+//            'backgImage' => 'URL',
+            'colorSku' => 'max:12',
+            'sizeSku' => 'numeric|max:40',
+            'fontWeightSku' => 'numeric|max:700',
+            'fontWeightDescription' => 'numeric|max:700',
+            'descriptionTextColor' => 'max:12',
+            'descriptionBorder' => 'alpha|max:5',
+            'imageBorder' => 'alpha|max:5',
+            'skuBorder' => 'alpha|max:5',
+            'barcodeHeight' => 'max:40',
+            'barcodeWidth' => 'max:40',
+            'barcodeColor' => 'max:12',
+            'barcodeBackgroundColor' => 'max:12',
+
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json(
+                array(
+                    'message' => 'Validation failed',
+                    'errors' => $validator->errors()
+                )
+            );
+
+        }
+        $height = $request->height;
+        $width = $request->width;
+        if ($height > $width) {
+            if (($height - $width) > $width * 3) {
+                return response()->json(
+                    array("status" => 0,
+                        "message" => "Template height (" . $height . "px) too big for width (" . $width . "px)"
+                    ));
+
+            } else {
+                if (($width - $height) > $height * 3) {
+                    return [
+                        "status" => 0,
+                        "message" => "Template width (" . $width . "px) too big for height (" . $height . "px)"
+                    ];
+                }
+            }
+        }
+                $template->update($request->all());
+                return [
+                    "status" => 1,
+                    "data" => $template,
+                    "message" => "Template updated successfully"
+                ];
+
+
+        }
+
 
     /**
      * Remove the specified resource from storage.

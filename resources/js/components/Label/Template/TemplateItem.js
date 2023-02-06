@@ -24,15 +24,15 @@ function IsPortraitOrLandscape(width, height) {
 const TemplateItem = (props) => {
 
     const widthHeigthObj = IsPortraitOrLandscape(props.width, props.height);
-    const { width, height } = widthHeigthObj;
+    const { height, width } = widthHeigthObj;
     const barcodeWidth = (width / 100) * 0.56;
     const barcodeHeight = (height / 100) * 17.5;
     const barcodeFontSize = (width / 100) * 4;
 
     return (
         <div className="card text-center" style={{
-            width: width,
-            height: height,
+            width: height,
+            height: width,
             backgroundColor: props.backGroudColor,
             padding: '12px',
             backgroundImage: props.backgImage,

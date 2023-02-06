@@ -6,6 +6,7 @@ use App\Http\Requests\StoreLabelRequest;
 use App\Http\Requests\UpdateLabelRequest;
 use App\Http\Resources\LabelResource;
 use App\Models\Label;
+use Illuminate\Support\Facades\Validator;
 
 class LabelController extends Controller
 {
@@ -38,7 +39,11 @@ class LabelController extends Controller
      */
     public function store(StoreLabelRequest $request)
     {
-        //
+        $label = Label::create($request->all());
+        return [
+            "status" => 1,
+            "data" => $label
+        ];
     }
 
     /**
@@ -49,7 +54,10 @@ class LabelController extends Controller
      */
     public function show(Label $label)
     {
-        //
+        return [
+            "status" => 1,
+            "data" => $label
+        ];
     }
 
     /**
@@ -72,7 +80,47 @@ class LabelController extends Controller
      */
     public function update(UpdateLabelRequest $request, Label $label)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|min:2',
+            'height' => 'required|numeric',
+            'width' => 'required|numeric',
+            'imageUrl' => 'URL',
+            'backGroundColor' => 'max:12',
+            'description' => 'min:2|max:120',
+            'sizeDescription' => 'numeric|max:12',
+            'sku' => 'max:12',
+            'barcode' => 'max:15',
+//            'backgImage' => 'URL',
+            'colorSku' => 'max:12',
+            'sizeSku' => 'numeric|max:40',
+            'fontWeightSku' => 'numeric|max:700',
+            'fontWeightDescription' => 'numeric|max:700',
+            'descriptionTextColor' => 'max:12',
+            'descriptionBorder' => 'alpha|max:5',
+            'imageBorder' => 'alpha|max:5',
+            'skuBorder' => 'alpha|max:5',
+            'barcodeHeight' => 'max:40',
+            'barcodeWidth' => 'max:40',
+            'barcodeColor' => 'max:12',
+            'barcodeBackgroundColor' => 'max:12',
+
+
+        ]);
+        if ($validator->fails()) {
+            return response()->json(
+                array(
+                    'message' => 'Validation failed',
+                    'errors' => $validator->errors()
+                )
+            );
+
+        }
+        $label->update($request->all());
+        return [
+            "status" => 1,
+            "data" => $label,
+            "message" => "Template updated successfully"
+        ];
     }
 
     /**
@@ -83,6 +131,7 @@ class LabelController extends Controller
      */
     public function destroy(Label $label)
     {
-        //
+        $label->delete();
+        return response()->json('Label deleted successfully');
     }
 }

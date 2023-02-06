@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { templateActions } from '../../../store/template';
 import TemplateItem from './TemplateItem';
 import classes from './TemplateList.module.css'
 
 const TemplateList = () => {
-    const [templateList, setTemplateList] = useState([]);
     const [message, setMessage] = useState(null);
     const templates = useSelector(state => state.template.templateList);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    console.log("templates redux: ", templates);
     useEffect(() => {
         fetch('http://127.0.0.1:8000/api/templates')
             .then((response) => response.json())
             // .then((response) => setTemplateList(response.data))
-            .then((response) => dispatch(templateActions.fetchTemplateItems(response.data)))
+            .then((response) => {
+                dispatch(templateActions.fetchTemplateItems(response.data))
+            })
             .catch(error => console.log(error))
     }, []);
+    const ediTemplateHandler = (template) => {
+        navigate(`/templates/${template.id}`);
+    }
+
 
     const deleteTemplateHandler = (id) => {
         console.log(id);
@@ -47,9 +52,8 @@ const TemplateList = () => {
                             <div>
                                 <h2>{template.title}</h2>
                                 {message && <p>{message}</p>}
-                                <Link to={`/templates/${template.id}`}><button className="btn btn-secondary">Edit</button></Link>
+                                <button onClick={() => ediTemplateHandler(template)} className="btn btn-secondary">Select</button>
                                 <button className="btn btn-danger m-2" onClick={() => deleteTemplateHandler(template.id)}>Delete</button>
-
                                 <TemplateItem
                                     width={template.width}
                                     height={template.height}
@@ -66,12 +70,8 @@ const TemplateList = () => {
                                 />
                             </div>
                         </div>
-
                     )
-
                 })}
-
-
             </div>
         </div>
     )

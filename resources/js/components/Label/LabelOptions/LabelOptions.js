@@ -4,7 +4,6 @@ import { labelComponentActions } from '../../../store/labelComponent';
 import useDispatchLabelActionByEventName from "../../../hooks/use-DispatchLabelActionByEventName";
 import Card from "../../UI/Card/Card";
 import LabelOptionModal from "../../UI/LabelOptionModal/LabelOptionModal";
-import Button from "../../UI/Button/Button";
 import NewTemplate from "../Template/NewTemplate";
 
 const LabelOptions = () => {

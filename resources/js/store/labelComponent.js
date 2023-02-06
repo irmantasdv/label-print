@@ -56,7 +56,6 @@ const labelComponentSlice = createSlice({
         changeBarcodeColor(state, action) { state.labelComponent.barcodeColor = action.payload },
         changeBarcodeBackgroundColor(state, action) { state.labelComponent.textColor = action.payload },
 
-
     }
 })
 export const labelComponentActions = labelComponentSlice.actions;

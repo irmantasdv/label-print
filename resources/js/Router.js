@@ -15,6 +15,7 @@ import UploadCsv from "./pages/UploadCsv";
 import TemplateList from "./components/Label/Template/TemplateList";
 import TemplateDetails from "./components/Label/Template/TemplateDetails";
 import JapanFirst from "./components/japan/JapanFirst";
+import LabelDetail from "./components/Label/LabelDetail/LabelDetail";
 
 
 
@@ -29,6 +30,7 @@ const AppRouter = () => (
             <Route path="/home" element={<HomePage/>} exact />
             <Route path='/sheet' element={<TestSheet />} />
             <Route path='/labels' element={<Labels />} />
+            <Route path='/labels/:labelId' element={<LabelDetail/>} />
             <Route path='/clients' element={<Clients />} />
             <Route path='/clients/:id' element={<EditClient/>} />
             <Route path='/create-account' element={<CreateAccount/>} />

@@ -1,11 +1,39 @@
 import React from 'react'
+import { useState } from 'react';
+import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import LabelOptions from "../Label/LabelOptions/LabelOptions";
+
 
 const JapanFirst = () => {
+  const auth = useSelector(state => state.auth.auth);
+  const template = useSelector(state => state.labelComponent.labelComponent);
+  const dispatch = useDispatch();
+  const templateTitleRef = useRef();
+  const [toggleNotLoggedInModal, setToggleNotLoggedInModal] = useState(false);
+  const toggleNewTemplateModaleNotLoggedIn = () => {
+    setToggleNotLoggedInModal(!toggleNotLoggedInModal);
+}
+
+const changeTemplateTite = () => {
+  const title = templateTitleRef.current.value;
+  dispatch(labelComponentActions.changeTitle(title));
+
+}
+const SaveTemplateHandler = () => {
+
+  const temArray = [];
+  temArray.push(template);
+  console.log(template);
+}
   return (
-    <div className="container d-flex ">
-        {/*<img src="./images/1_ikigai.jpg"/>*/}
-        <img style={{width:"300px",height:"auto"}} className="img-fluid img-thumbnail mt-4" src="https://idsb.tmgrup.com.tr/ly/uploads/images/2021/02/08/91641.jpg"/>
-        <p className='text-justify m-4' style={{height:'22rem',textAlign:'justify'}}>The Japanese concept of “ikigai” means to define and practice your purpose in life. In other words, the reason you get up in the morning. An individual’s ikigai should be their calling, it should be something they are passionate about and good at. It should be something the world needs and if necessitated be able to provide financial rewards. The Japanese believe that everyone has their own Ikigai and finding it is an essential journey to bring satisfaction and meaning to life.</p>
+    <div>
+      <div>
+        <button>He</button>
+        <input type='text' ref={templateTitleRef}/>
+      </div>
+        <LabelOptions />
+
     </div>
   )
 }
