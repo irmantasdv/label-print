@@ -4,10 +4,33 @@ import { labelComponentActions } from '../../../store/labelComponent';
 import useDispatchLabelActionByEventName from "../../../hooks/use-DispatchLabelActionByEventName";
 import Card from "../../UI/Card/Card";
 import LabelOptionModal from "../../UI/LabelOptionModal/LabelOptionModal";
-import Button from "../../UI/Button/Button";
 import NewTemplate from "../Template/NewTemplate";
+import { useLocation } from 'react-router';
+import UpdateTemplate from '../Template/UpdateTemplate';
+
 
 const LabelOptions = () => {
+    const location = useLocation();
+    const labelComponent = useSelector(state => state.labelComponent.labelComponent);
+    const {
+        height,
+        width,
+        backGroundColor,
+        description,
+        sizeDescription,
+        sku,
+        imageUrl,
+        imageBorder,
+        barcode,
+        backgImage,
+        colorSku,
+        sizeSku,
+        fontWeightSku,
+        fontWeightDescription,
+        descriptionTextColor,
+        descriptionBorder,
+        skuBorder
+    } = labelComponent;
     const [toggleLabelSize, setToggleLabelSize] = useState(false)
     const [toggleLabelBackground, setToggleLabelBackground] = useState(false)
     const [toggleLabelSku, setToggleLabelSku] = useState(false)
@@ -36,8 +59,7 @@ const LabelOptions = () => {
         handleColorChanges: colorChange,
     } = useDispatchLabelActionByEventName();
     const dispatch = useDispatch();
-    const labelComponent = useSelector(state => state.labelComponent.labelComponent);
-    const { height, width, imageBorder, sizeDescription, sizeSku } = labelComponent;
+
     const {
         handleColorChanges,
         handlePixelChanges,
@@ -62,6 +84,7 @@ const LabelOptions = () => {
     const handleBackgroudImageChange = (e) => {
         const eUrl = e.target.value;
         const url = 'url(' + eUrl + ')';
+        dispatch(labelComponentActions.changeBackGroundColor(''));
         dispatch(labelComponentActions.changeBackgroudImage(url));
     }
     const handleWeightChange = (e) => {
@@ -86,21 +109,21 @@ const LabelOptions = () => {
                 </style>
                 <div className="row align-items-center">
                     <div className="col-sm-4">
-                        <label htmlFor="backgroudImage">Background</label>
-                        <input type="text" id='backgroudImage' className="form-control" onChange={handleBackgroudImageChange} placeholder="Backgroud Image" />
+                        <label className='inline' htmlFor="backgroudImage">Image Backgr</label>
+                        <input type="text" value={backgImage || ''} id='backgroudImage' className="form-control" onChange={handleBackgroudImageChange} placeholder="Backgroud Image" />
                     </div>
                     <button className="col-sm-3 btn btn-outline-secondary btn-sm m-2" onClick={toggleBackgroundHandler}>{toggleLabelBackground ? 'Hide' : 'More'}</button>
                     {toggleLabelBackground && <LabelOptionModal onClick={toggleBackgroundHandler} title={'Background Options'}>
                         <div className="col-sm-4">
                             <label htmlFor="colorpicker">Background Color: </label>
-                            <input type="color" className="form-control" name="changeBackGroundColor" id="colorpicker" onChange={colorChange} />
+                            <input type="color" value={backGroundColor || 'white'} className="form-control" name="changeBackGroundColor" id="colorpicker" onChange={colorChange} />
                         </div>
                     </LabelOptionModal>}
                 </div>
                 <div className='row align-items-center'>
                     <div className="col-sm-4">
                         <label htmlFor="sku">SKU</label>
-                        <input type="text" id="sku" onChange={handleSkuChange} />
+                        <input type="text" value={sku || ''} id="sku" onChange={handleSkuChange} />
                     </div>
                     <button className="col-sm-3 btn btn-outline-secondary btn-sm m-2"
                         onClick={toggleSkuHandler}>{toggleLabelSku ? 'Hide' : 'More'}</button>
@@ -108,16 +131,16 @@ const LabelOptions = () => {
                         <>
                             <div className="col-sm-4">
                                 <label htmlFor="sizeSku">SKU size</label>
-                                <input type="number" min={6} max={60} value={sizeSku} name="changeSkuSize" className="form-control" id="sizeSku" onChange={handlePixelChanges} />
+                                <input type="number" min={6} max={60} value={sizeSku || 12} name="changeSkuSize" className="form-control" id="sizeSku" onChange={handlePixelChanges} />
                             </div>
                             <div className="col-sm-4">
                                 <label htmlFor="colorpickerSku">SKU color</label>
-                                <input type="color" className="form-control" name="changeSkuColor" id="colorpickerSku" onChange={handleColorChanges} />
+                                <input type="color" value={colorSku || 'black'} className="form-control" name="changeSkuColor" id="colorpickerSku" onChange={handleColorChanges} />
                             </div>
 
                             <div className="col-sm-4">
                                 <label htmlFor="weightSku">SKU text weight</label>
-                                <select className="form-select" defaultValue="400" aria-label="Default select example" type="number" min={100} max={900} id="weightSku" onChange={handleWeightChange}>
+                                <select className="form-select" defaultValue="400" value={fontWeightSku || 400} aria-label="Default select example" type="number" min={100} max={900} id="weightSku" onChange={handleWeightChange}>
                                     <option value="400">400</option>
                                     <option value="500">500</option>
                                     <option value="600">600</option>
@@ -126,26 +149,26 @@ const LabelOptions = () => {
                             </div>
                             <div className="col-sm-2">
                                 <label htmlFor="skuBorder">Sku border</label>
-                                <input type="checkbox" id="skuBorder" name="changeSkuBorder" onChange={handleBorderChanges} />
+                                <input type="checkbox" value={skuBorder} id="skuBorder" name="changeSkuBorder" onChange={handleBorderChanges} />
                             </div></>
                     </LabelOptionModal>}
                 </div>
                 <div className='row align-items-center'>
                     <div className='col-sm-4'>
                         <label htmlFor="text">Description</label>
-                        <input type="text" id="text" onChange={handleTextChange} />
+                        <input type="text" id="text" value={description || ''} onChange={handleTextChange} />
                     </div>
                     <button className="col-sm-3 btn btn-outline-secondary btn-sm m-2"
                         onClick={toggleDescriptionHandler}>{toggleLabelDescription ? 'Hide' : 'More'}</button>
                     {toggleLabelDescription && <LabelOptionModal onClick={toggleDescriptionHandler} title={'Description Options'}>
                         <><div className="col-sm-4">
-                            <label htmlFor="sizeSku">Text size</label>
-                            <input type="number" min={6} max={60} value={sizeDescription} name="changeTextSize" className="form-control" id="sizeSku" onChange={handlePixelChanges} />
+                            <label htmlFor="textSize">Text size</label>
+                            <input type="number" min={6} max={60} value={sizeDescription || 12} name="changeTextSize" className="form-control" id="textSize" onChange={handlePixelChanges} />
                         </div>
 
                             <div className="col-sm-4">
                                 <label htmlFor="weightSku">Text weight</label>
-                                <select className="form-select" defaultValue="400" aria-label="Default select example" type="number" min={100} max={900} id="weightSku" onChange={handleTextWeightChange}>
+                                <select className="form-select" defaultValue="400" value={fontWeightDescription || 400} aria-label="Default select example" type="number" min={100} max={900} id="weightSku" onChange={handleTextWeightChange}>
                                     <option value="400">400</option>
                                     <option value="500">500</option>
                                     <option value="600">600</option>
@@ -155,12 +178,12 @@ const LabelOptions = () => {
 
                             <div className="col-sm-4">
                                 <label htmlFor="colorpickerSku">Description color</label>
-                                <input type="color" className="form-control" name="changeTextColor" id="colorpickerSku" onChange={handleColorChanges} />
+                                <input type="color" value={descriptionTextColor || 'black'} className="form-control" name="changeTextColor" id="colorpickerSku" onChange={handleColorChanges} />
                             </div>
 
                             <div className="col-sm-2">
                                 <label htmlFor="descriptionBorder">Description border</label>
-                                <input type="checkbox" id="descriptionBorder" name="changeDescriptionBorder" onChange={handleBorderChanges} />
+                                <input type="checkbox" value={descriptionBorder} id="descriptionBorder" name="changeDescriptionBorder" onChange={handleBorderChanges} />
                             </div></>
                     </LabelOptionModal>}
                 </div>
@@ -168,7 +191,7 @@ const LabelOptions = () => {
 
                     <div className='col-sm-4'>
                         <label htmlFor="url">Image url</label>
-                        <input type="text" id="url" onChange={handleImageUrlChange} />
+                        <input type="text" value={imageUrl || ''} id="url" onChange={handleImageUrlChange} />
                     </div>
                     <button className="col-sm-3 btn btn-outline-secondary btn-sm m-2"
                         onClick={toggleImageHandler}>{toggleLabelImage ? 'Hide' : 'More'}</button>
@@ -182,7 +205,7 @@ const LabelOptions = () => {
                 <div className="row align-items-center">
                     <div className='col-sm-4'>
                         <label htmlFor="barcode">Barcode</label>
-                        <input type="text" id="barcode" onChange={handleBarcodeChange} />
+                        <input type="text" value={barcode || 1245} id="barcode" onChange={handleBarcodeChange} />
                     </div>
                     <button className="col-sm-3 btn btn-outline-secondary btn-sm m-2"
                         onClick={toggleBarcodeHandler}>{toggleLabelBarcode ? 'Hide' : 'More'}</button>
@@ -204,16 +227,16 @@ const LabelOptions = () => {
                     {toggleLabelSize && <LabelOptionModal onClick={toggleSizeHandler} title={'Label Size'}>
                         <div className="col-sm-4">
                             <label htmlFor="height">Height</label>
-                            <input type="number" name="changeHeight" value={height} className="form-control"
+                            <input type="number" name="changeHeight" value={height || 300} className="form-control"
                                 onChange={handlePixelChanges} placeholder="height" />
                         </div>
                         <div className="col-sm-4">
                             <label htmlFor="width">Width</label>
-                            <input type="number" value={width} className="form-control" name="changeWidth"
+                            <input type="number" value={width || 400} className="form-control" name="changeWidth"
                                 onChange={handlePixelChanges} placeholder="width" />
                         </div>
                     </LabelOptionModal>}
-                    <NewTemplate className={'btn btn-outline-success btn-sm m-2'} />
+                    {location.pathname === "/home" ? <NewTemplate className={'btn btn-outline-success btn-sm m-2'} /> : <UpdateTemplate/>}
                 </div>
 
             </div>

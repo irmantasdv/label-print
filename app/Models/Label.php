@@ -8,8 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Label extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'sku',
+        'imageUrl',
+        'description',
+        'barcode'
+        ];
 
-//    public static function  all(){
-//        return Label::all();
-//    }
 }

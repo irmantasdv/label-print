@@ -3,7 +3,7 @@ import Button from '../components/UI/Button/Button'
 import useInput from '../hooks/use-input';
 import useValidation from '../hooks/use-Validation';
 
-const UploadCsv = () => {
+const UploadCsv = () => {   
     const {
         isValidEmail,
         invalidEmailMessage,

@@ -11,24 +11,23 @@ const TemplateList = () => {
     const templates = useSelector(state => state.template.templateList);
     const dispatch = useDispatch();
 
-    console.log("templates redux: ", templates);
     useEffect(() => {
         fetch('http://127.0.0.1:8000/api/templates')
             .then((response) => response.json())
-            // .then((response) => setTemplateList(response.data))
-            .then((response) => dispatch(templateActions.fetchTemplateItems(response.data)))
+            .then((response) => {
+                dispatch(templateActions.fetchTemplateItems(response.templates))
+            }
+            )
             .catch(error => console.log(error))
     }, []);
 
     const deleteTemplateHandler = (id) => {
-        console.log(id);
         fetch(`http://127.0.0.1:8000/api/templates/${id}`,
             {
                 method: 'DELETE'
             }
         )
-            .then(response => response.json())
-            .then(response => console.log(response), dispatch(templateActions.removeTemplateFromItems(id)))
+            .then(dispatch(templateActions.removeTemplateFromItems(id)))
             .catch(error => console.log(error))
 
     }
@@ -47,17 +46,22 @@ const TemplateList = () => {
                             <div>
                                 <h2>{template.title}</h2>
                                 {message && <p>{message}</p>}
-                                <Link to={`/templates/${template.id}`}><button className="btn btn-secondary">Edit</button></Link>
+                                <Link to={`/templates/${template.id}`}><button className="btn btn-secondary">Select</button></Link>
                                 <button className="btn btn-danger m-2" onClick={() => deleteTemplateHandler(template.id)}>Delete</button>
 
                                 <TemplateItem
                                     width={template.width}
                                     height={template.height}
                                     sku={template.sku}
+                                    colorSku={template.colorSku}
+                                    skuBorder={template.skuBorder}
+                                    fontWeightSku={template.fontWeightSku}
                                     imageUrl={template.imageUrl}
                                     labelDescription={template.description}
+                                    sizeSku={template.sizeSku}
                                     barcode={template.barcode}
                                     backGroudColor={template.backGroundColor}
+                                    backgroundImage={template.backgImage }
                                     imageBorder={template.imageBorder}
                                     sizeDescription={template.sizeDescription}
                                     fontWeightDescription={template.fontWeightDescription}

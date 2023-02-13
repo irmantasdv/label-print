@@ -36,7 +36,8 @@ class TemplateFactory extends Factory
             'barcodeColor' => $this->faker->hexColor(),
             'barcodeBackgroundColor' => $this->faker->hexColor(),
             'barcodeHeight' => $this->faker->randomElement([30,40,59]),
-            'barcodeWidth' => $this->faker->randomElement([30,40,59])
+            'barcodeWidth' => $this->faker->randomElement([30,40,59]),
+//            'user_id' => $this->faker->randomElement([1,2,3])
         ];
     }
 }

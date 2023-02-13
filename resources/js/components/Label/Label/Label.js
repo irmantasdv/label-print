@@ -1,5 +1,5 @@
 import classes from './Label.module.css';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Barcode from 'react-barcode';
 import Print from '../../Print/Print';
 
@@ -33,22 +33,22 @@ const Label = (props) => {
 
         <Print>
             <div className="card" style={{
-                width: width,
-                height: height,
-                backgroundColor: backGroundColor,
+                width: props.width,
+                height: props.height,
+                backgroundColor: props.backGroundColor,
                 padding: '12px',
-                backgroundImage: backgImage,
+                backgroundImage: props.backgImage,
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
             }}>
                 {imageUrl && <div style={{ minHeight: "50%" }}>
-                    <img src={imageUrl} className="card-img-top p-3" style={{ height: "100%", width: "100%", objectFit: "contain", borderStyle: imageBorder, margin: 0 }} alt="" />
+                    <img src={imageUrl} className="card-img-top p-3" style={{ height: "100%", width: "100%", objectFit: "contain", borderStyle: props.imageBorder, margin: 0 }} alt="" />
                 </div>}
                 <div className="card-body">
-                    <p className={`"card-text" ${classes.cardText}`} style={{ color: colorSku, fontSize: sizeSku, fontWeight: fontWeightSku, borderStyle: skuBorder, margin: 0.2 }}>{sku}</p>
-                    <p className={`"card-text" ${classes.cardText}`} style={{ fontSize: sizeDescription, fontWeight: fontWeightDescription, color: descriptionTextColor, borderStyle: descriptionBorder, margin: 0.2 }}>{description}</p>
-                    <Barcode value={barcode} width={barcodeWidth} textMargin={1} fontSize={barcodeFontSize} height={barcodeHeight} />
+                    <p className={`"card-text" ${classes.cardText}`} style={{ color: props.colorSku, fontSize: props.sizeSku, fontWeight: props.fontWeightSku, borderStyle: props.skuBorder, margin: 0.2 }}>{props.sku}</p>
+                    <p className={`"card-text" ${classes.cardText}`} style={{ fontSize: sizeDescription, fontWeight: fontWeightDescription, color: descriptionTextColor, borderStyle: descriptionBorder, margin: 0.2 }}>{props.description}</p>
+                    <Barcode value={props.barcode} width={barcodeWidth} textMargin={1} fontSize={barcodeFontSize} height={barcodeHeight} />
                 </div>
             </div>
         </Print>

@@ -16,6 +16,9 @@ const Navigation = () => {
     const logoutHandler = () => {
         dispatch(authActions.logout());
     }
+    const handleSearch = (e) => {
+        e.preventDefault();
+    }
     let logedComponent = (
             <NavLink to={'/login'} onClick={loginHandler} className="nav-link active">LogIn<span><IoLogInOutline size={20}/></span></NavLink>);
     if (auth) {
@@ -66,7 +69,7 @@ const Navigation = () => {
                     </ul>
                     <form className="d-flex" role="search">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button className="btn btn-outline-light " type="submit">Search</button>
+                        <button className="btn btn-outline-light" onClick={handleSearch} >Search</button>
                     </form>
                 </div>
             </div>

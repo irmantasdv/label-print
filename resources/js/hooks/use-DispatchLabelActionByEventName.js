@@ -1,17 +1,18 @@
-import {labelComponentActions} from "../store/labelComponent";
-import {useDispatch, useSelector} from "react-redux";
-import {split} from "lodash/string";
+import { labelComponentActions } from "../store/labelComponent";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const useDispatchLabelActionByEventName = () => {
 
     const dispatch = useDispatch();
     const labelComponent = useSelector(state => state.labelComponent.labelComponent);
-    const {imageBorder, descriptionBorder,skuBorder} = labelComponent;
+    const {imageBorder, descriptionBorder, skuBorder} = labelComponent;
     const handleColorChanges = (event) => {
         const name = event.target.name;
-       const color = event.target.value;
+        const color = event.target.value;
         switch (name) {
             case 'changeBackGroundColor':
+                dispatch(labelComponentActions.changeBackgroudImage(''));
                 dispatch(labelComponentActions.changeBackGroundColor(color));
                 break;
             case 'changeSkuColor':

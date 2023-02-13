@@ -14,7 +14,9 @@ import Header from "./components/Layout/Header";
 import UploadCsv from "./pages/UploadCsv";
 import TemplateList from "./components/Label/Template/TemplateList";
 import TemplateDetails from "./components/Label/Template/TemplateDetails";
-import JapanFirst from "./components/japan/JapanFirst";
+import CsvUpload from "./components/CsvUpload/CsvUpload";
+import LabelDetails from "./components/Label/Label/LabelDetails";
+
 
 
 
@@ -29,13 +31,13 @@ const AppRouter = () => (
             <Route path="/home" element={<HomePage/>} exact />
             <Route path='/sheet' element={<TestSheet />} />
             <Route path='/labels' element={<Labels />} />
+            <Route path='/labels/:labelId' element={<LabelDetails/>} />
             <Route path='/clients' element={<Clients />} />
             <Route path='/clients/:id' element={<EditClient/>} />
             <Route path='/create-account' element={<CreateAccount/>} />
             <Route path='/contact' element={<ContactForm />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/upload' element={<UploadCsv />} />
-            <Route path='/japan' element={<JapanFirst/>} />
+            <Route path='/upload' element={<CsvUpload />} />
             <Route path='/adjkd67asd' element={<AdminLogin />} />
             <Route path='*' element={<NotFound />} />
         </Routes>

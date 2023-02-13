@@ -15,9 +15,9 @@ class CreateLabelsTable extends Migration
     {
         Schema::create('labels', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->bigInteger('barcode');
-            $table->string('image_url');
+            $table->string('description');
+            $table->string('barcode');
+            $table->string('imageUrl');
             $table->string('sku');
             $table->timestamps();
         });

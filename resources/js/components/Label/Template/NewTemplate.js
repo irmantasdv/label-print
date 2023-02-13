@@ -19,43 +19,38 @@ const NewTemplate = (props) => {
 
     }
     const SaveTemplateHandler = () => {
-
-        const temArray = [];
-        temArray.push(template);
-        console.log(template);
         fetch('http://localhost:8000/api/templates', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
             },
-            body: {
-                "title": "t1",
-                "height": 400,
-                "width": 300,
-                "backGroundColor": "white",
-                "description": "descr1",
-                "sizeDescription": 12,
-                "sku": "A232AR*",
-                "imageUrl": "https://letsenhance.io/static/334225cab5be263aad8e3894809594ce/75c5a/MainAfter.jpg",
-                "barcode": "111111111",
-                "backgImage": "none",
-                "colorSku": "black",
-                "sizeSku": 14,
-                "fontWeightSku": "300",
-                "fontWeightDescription": "300",
-                "descriptionTextColor": "",
-                "descriptionBorder": "none",
-                "imageBorder": "none",
-                "skuBorder": "none",
-                "barcodeHeight": "",
-                "barcodeWidth": "",
-                "barcodeColor": "",
-                "barcodeBackgroundColor": ""
-              },
-          })
+            body: JSON.stringify({
+                "title": template.title,
+                "height": template.height,
+                "width": template.width,
+                "backGroundColor": template.backGroundColor,
+                "description": template.description,
+                "sizeDescription": template.sizeDescription,
+                "sku": template.sku,
+                "imageUrl": template.imageUrl,
+                "barcode": template.barcode,
+                "backgImage": template.backgImage,
+                "colorSku": template.colorSku,
+                "sizeSku": template.sizeSku,
+                "fontWeightSku": template.fontWeightSku,
+                "fontWeightDescription": template.fontWeightDescription,
+                "descriptionTextColor": template.descriptionTextColor,
+                "descriptionBorder": template.descriptionBorder,
+                "imageBorder": template.imageBorder,
+                "skuBorder": template.skuBorder,
+                "barcodeHeight": template.barcodeHeight,
+                "barcodeWidth": template.barcodeWidth,
+                "barcodeColor": template.barcodeColor,
+                "barcodeBackgroundColor": template.barcodeBackgroundColor
+            })
+        })
             .then(response => console.log(response))
-            // .catch(error => console.log(error))
+            .catch(error => console.log(error))
         setToggleNotLoggedInModal(!toggleNotLoggedInModal);
     }
     const checkIfLogedIn = () => {

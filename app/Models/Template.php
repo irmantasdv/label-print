@@ -35,4 +35,18 @@ class Template extends Model
         'barcodeHeight',
         'barcodeWidth'
     ];
+
+    /**
+
+     * Get the User that owns the template.
+
+     */
+
+    public function user()
+
+    {
+
+        return $this->belongsTo(User::class);
+
+    }
 }

@@ -4,8 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Resources\LabelTemplateCollection;
 use App\Http\Controllers\LabelController;
-use App\Models\LabelTemplate;
 use App\Http\Controllers\TemplateController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,12 +17,20 @@ use App\Http\Controllers\TemplateController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::resource('/labels', LabelController::class,);
-Route::resource('/templates',TemplateController::class)->middleware('cors');
-//Route::get('/templates', function () {
-//    return new LabelTemplateCollection(LabelTemplate::all());
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
 //});
+//Route::get('/hello', [AuthController::class],'hello');
+//Route::resource('/labels', LabelController::class,);
+//Route::resource('/templates',TemplateController::class)->middleware('cors');
+//Route::resource('/users',UserController::class);
+//Route::get('/greeting', function () {
+//    return 'Hello World';
+//});
+Route::get('/templates',[TemplateController::class,'index'])->withoutMiddleware("throttle:api")->middleware("throttle:300:1");
+Route::post('/templates',[TemplateController::class, 'store']);
+Route::delete('/templates/{template}', [TemplateController::class, 'destroy']);
+Route::put('/templates/{template}', [TemplateController::class, 'update']);
+Route::get('/templates/{template}', [TemplateController::class, 'show']);
+Route::get('/labelssa',[LabelController::class,'index'])->withoutMiddleware("throttle:api")->middleware("throttle:300:1");
+Route::post('/labels',[LabelController::class, 'store']);
